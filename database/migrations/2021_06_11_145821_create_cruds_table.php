@@ -18,6 +18,9 @@ class CreateCrudsTable extends Migration
             $table->string('student_name');
 
             $table->string('student_email');
+     
+           
+
             $table->timestamps();
         });
     }

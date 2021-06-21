@@ -31,3 +31,11 @@ Route::get('/add_data', [CrudController::class, 'addData'] );
 
 // post for method is data store
 Route::post('/store_data', [CrudController::class, 'storeData'] );
+// edit
+Route::get('/edit_data/{id}', [CrudController::class, 'editData'] );
+
+// Update
+Route::post('/update_data/{id}', [CrudController::class, 'updateData'] );
+
+// Delete data
+Route::get('/delete_data/{id}', [CrudController::class, 'deleteData'] );

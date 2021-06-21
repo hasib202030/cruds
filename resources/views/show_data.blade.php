@@ -19,30 +19,60 @@
       <div class="row">
         <div class="col-lg-12">
 
-          <table class="table">
+          <table class="table table-bordered">
             <a href="{{ url('/add_data')}}" class="btn btn-primary my-3">Add Student</a>
+            {{-- Data add msg --}}
             @if (Session::has('msg'))
-            <p class="alert alert-success">{{ Session::get('msg') }}</p>
-                 
+            <p class="alert alert-success">{{ Session::get('msg') }}</p>                 
              @endif
+
+
             <thead>
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Student Name</th>
                 <th scope="col">Student Email</th>
+                <th scope="col">Action</th>
             
               </tr>
             </thead>
             <tbody>
-              <tr>              
-                <td>1</td>
-                <td>Hasib</td>
-                <td>hasib@gmail.com</td>
-              </tr>
+              
+  
+         
+
+
+
+
+
+
+             @foreach ($showData as $key=>$data)
+             <tr>              
+               {{-- key+1 is 0 remove --}}
+              <td>{{ $key+1}}</td> 
+              <td>{{ $data->student_name }}</td>
+              <td>{{ $data->student_email }}</td>
+              <td>
+                <a href="{{ url('/edit_data/' .$data->id) }}" class="btn btn-primary">Edit</a>
+                {{-- <a href="{{  url('/edit_data/' .$data->id) }}" class="btn btn-primary">Edit</a> --}}
+
+
+
+
+
+                <a href="{{ url('/delete_data/' .$data->id) }}" onclick= "return confirm('Are you sure delete student')"  class="btn btn-danger">Delete</a>
+              </td>
+              
+            </tr>
+             @endforeach
               
             
             </tbody>
           </table>
+
+          {{-- table pagenation --}}
+        {{ $showData->links() }}
+
         </div>
       </div>
     </div>
